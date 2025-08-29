@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ device_type and 'Edit' or 'New' }} Device Type</h1>
+<form method="post">
+  <label>Name: <input type="text" name="name" value="{{ device_type.name if device_type else '' }}" required></label><br>
+  <label>Job Name: <input type="text" name="job_name" value="{{ device_type.job_name if device_type else '' }}" required></label><br>
+  <label>Metrics Path: <input type="text" name="metrics_path" value="{{ device_type.metrics_path if device_type else '/metrics' }}"></label><br>
+  <label>Port: <input type="number" name="port" value="{{ device_type.port if device_type else 9100 }}"></label><br>
+  <button type="submit">Save</button>
+</form>
+{% endblock %}
