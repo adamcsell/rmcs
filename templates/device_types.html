@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Device Types</h1>
+<ul>
+  {% for t in types %}
+    <li>{{ t.name }} - <a href="/device-types/{{ t.id }}/edit">Edit</a></li>
+  {% endfor %}
+</ul>
+<p><a href="/device-types/new">Add Device Type</a></p>
+{% endblock %}

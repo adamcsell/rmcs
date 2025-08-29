@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ event.name }} ({{ event.date }})</h1>
+<h2>Devices</h2>
+<ul>
+  {% for device in event.devices %}
+    <li>{{ device.ip_address }} - {{ device.device_type.name }}</li>
+  {% endfor %}
+</ul>
+<h3>Add Device</h3>
+<form method="post" action="/events/{{ event.id }}/add_device">
+  <label>IP Address: <input type="text" name="ip_address" required></label>
+  <label>Type:
+    <select name="device_type_id">
+      {% for t in types %}
+      <option value="{{ t.id }}">{{ t.name }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <button type="submit">Add</button>
+</form>
+<p><a href="/events/{{ event.id }}/prometheus_config">View Prometheus Config</a></p>
+{% endblock %}
